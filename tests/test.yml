@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  remote_user: root
+  become: yes
+  roles:
+    - role: "ansible-role-mount-data-disk"
+      vg_name: "data-vg"
+      raw_disks: "sdc"
+      lv_name: "data"
+      require_lv_size: "99%VG"
+      fs: "ext4"
+      mount_point: "/data"
