@@ -4,7 +4,7 @@ Rôle Ansible permettant de partionner, formater et monter un disk additionnel s
 
 ## Comment l'installer
 
-Créer un fichier requirements.yml dans votre projet 
+Créer un fichier requirements.yml dans votre projet.
 
 ```
 - name: sebbrousse.mount-data-disk
