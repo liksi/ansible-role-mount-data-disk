@@ -1,0 +1,7 @@
+---
+vg_name: "data-vg"
+raw_disks: "sdc"
+lv_name: "data-lv"
+require_lv_size: "99%VG"
+fs: "ext4"
+mount_point: "/data"
