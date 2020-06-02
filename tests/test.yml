@@ -4,8 +4,9 @@
   become: yes
   roles:
     - role: "ansible-role-mount-data-disk"
+      disk_device: "sdc"
       vg_name: "data-vg"
-      raw_disks: "sdc"
+      raw_disks: "{{ disk_device }}1"
       lv_name: "data"
       require_lv_size: "99%VG"
       fs: "ext4"

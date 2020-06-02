@@ -1,4 +1,13 @@
 ---
+- name: "Create a new primary partition for data"
+  parted:
+    device: "/dev/{{ disk_device }}"
+    number: 1
+    label: gpt
+    name: data
+    flags: [ lvm ]
+    state: present
+
 - name: "Create the {{ vg_name }} Volume Group."
   lvg:
     vg: "{{ vg_name }}"
@@ -16,22 +25,22 @@
     force: no
     state: present
 
-- name: "Create a {{ fs }} filesystem on lvm /dev/{{ vg_name }}/{{ lv_name }}."
+- name: "Create a {{ fs }} filesystem on lvm /dev/mapper/{{ vg_name }}-{{ lv_name }}."
   filesystem:
     fstype: "{{ fs }}"
-    dev: "/dev/{{ vg_name }}/{{ lv_name }}"
+    dev: "/dev/mapper/{{ vg_name }}-{{ lv_name }}"
     force: no
 
 - name: "Create a directory to mount the filesystem."
   file:
     path: "{{ mount_point }}"
-    state: directory
+    state: "directory"
     mode: '0755'
 
 - name: "Mount the created {{ fs }} filesystem."
   mount:
     path: "{{ mount_point }}"
-    src: "/dev/{{ vg_name }}/{{ lv_name }}"
+    src: "/dev/mapper/{{ vg_name }}-{{ lv_name }}"
     fstype: "{{ fs }}"
     opts: "defaults,nofail"
     state: "mounted"

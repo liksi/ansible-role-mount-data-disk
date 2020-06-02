@@ -1,7 +1,8 @@
 ---
-vg_name: "data-vg"
-raw_disks: "sdc"
-lv_name: "data-lv"
+device_disk: "sdc"
+vg_name: "data"
+raw_disks: "{{ device_disk }}1"
+lv_name: "internal"
 require_lv_size: "99%VG"
 fs: "ext4"
 mount_point: "/data"

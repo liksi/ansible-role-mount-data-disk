@@ -7,7 +7,7 @@ Rôle Ansible permettant de partionner, formater et monter un disk additionnel s
 Créer un fichier requirements.yml dans votre projet.
 
 ```
-- name: sebbrousse.mount-data-disk
+- name: liksi.mount-data-disk
   version: 1.0.0
 ```
 
@@ -21,10 +21,11 @@ Créer un fichier requirements.yml dans votre projet.
 - hosts: my_host
   become: yes
   roles:
-    - role: "sebbrousse.mount-data-disk"
-      vg_name: "data-vg"
-      raw_disks: "sdc"
-      lv_name: "data"
+    - role: "liksi.mount-data-disk"
+      device_disk: "sdc"
+      vg_name: "data"
+      raw_disks: "{{ device_disk }}1"
+      lv_name: "internal"
       require_lv_size: "99%VG"
       fs: "ext4"
       mount_point: "/data"
