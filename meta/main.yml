@@ -2,6 +2,7 @@
 dependencies: []
 
 galaxy_info:
+  role_name: mount-data-disk
   author: Liksi
   company: Liksi
   description: Partition, format and mount an additional data disk
